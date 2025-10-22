@@ -45,8 +45,7 @@ def main():
                          width=30, height=2, cursor="hand2")
     btn_conj.pack(pady=5)
 
-    btn_conj = tk.Button(frame_botones, text=" MCD ", 
-                         command=ventana_mcd,
+    btn_conj = tk.Button(frame_botones, text=" MCD ", command=ventana_mcd,
                          bg="#424cdb", fg="white", font=('Arial', 13, 'bold'),
                          width=30, height=2, cursor="hand2")
     btn_conj.pack(pady=5)

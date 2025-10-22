@@ -1,6 +1,7 @@
 import numpy as np
 import tkinter as tk
 from tkinter import messagebox
+from fractions import Fraction
 
 def crear_ventana_base(titulo, ancho=600, alto=500):
     """Crea una ventana base para la aplicación"""
@@ -43,5 +44,6 @@ def mostrar_matriz_texto(matriz, nombre="Matriz"):
     """Convierte una matriz a texto formateado"""
     texto = f"{nombre}:\n"
     for fila in matriz:
-        texto += "  " + str([round(x, 4) if abs(x) > 1e-10 else 0 for x in fila]) + "\n"
+        fila_frac = [Fraction(float(x)).limit_denominator(1000) for x in fila]
+        texto += "[" + " ".join(str(f) for f in fila_frac) + "]\n"  
     return texto + "\n"

@@ -14,13 +14,13 @@ def ventana_multiplicacion():
     # Primera matriz
     tk.Label(frame_config, text="Matriz A:", font=('Arial', 11, 'bold'), bg="#f0f0f0").grid(row=0, column=0, columnspan=2, pady=5)
     tk.Label(frame_config, text="Filas:", bg="#f0f0f0").grid(row=1, column=0, padx=5)
-    filas1_var = tk.Spinbox(frame_config, from_=2, to=5, width=5)
+    filas1_var = tk.Spinbox(frame_config, from_=2, to=3, width=5)
     filas1_var.grid(row=1, column=1, padx=5)
     filas1_var.delete(0, tk.END)
     filas1_var.insert(0, "2")
     
     tk.Label(frame_config, text="Columnas:", bg="#f0f0f0").grid(row=2, column=0, padx=5)
-    cols1_var = tk.Spinbox(frame_config, from_=2, to=5, width=5)
+    cols1_var = tk.Spinbox(frame_config, from_=2, to=3, width=5)
     cols1_var.grid(row=2, column=1, padx=5)
     cols1_var.delete(0, tk.END)
     cols1_var.insert(0, "2")
@@ -28,13 +28,13 @@ def ventana_multiplicacion():
     # Segunda matriz
     tk.Label(frame_config, text="Matriz B:", font=('Arial', 11, 'bold'), bg="#f0f0f0").grid(row=0, column=3, columnspan=2, pady=5)
     tk.Label(frame_config, text="Filas:", bg="#f0f0f0").grid(row=1, column=3, padx=5)
-    filas2_var = tk.Spinbox(frame_config, from_=2, to=5, width=5)
+    filas2_var = tk.Spinbox(frame_config, from_=2, to=3, width=5)
     filas2_var.grid(row=1, column=4, padx=5)
     filas2_var.delete(0, tk.END)
     filas2_var.insert(0, "2")
     
     tk.Label(frame_config, text="Columnas:", bg="#f0f0f0").grid(row=2, column=3, padx=5)
-    cols2_var = tk.Spinbox(frame_config, from_=2, to=5, width=5)
+    cols2_var = tk.Spinbox(frame_config, from_=2, to=3, width=5)
     cols2_var.grid(row=2, column=4, padx=5)
     cols2_var.delete(0, tk.END)
     cols2_var.insert(0, "2")
@@ -97,7 +97,7 @@ def ventana_multiplicacion():
         # Validar dimensiones
         if A.shape[1] != B.shape[0]:
             messagebox.showerror("Error de Dimensiones", 
-                               f"No se pueden multiplicar matrices {A.shape[0]}×{A.shape[1]} y {B.shape[0]}×{B.shape[1]}\n\n"
+                               f"No se pueden multiplicar matrices {A.shape[0]}x{A.shape[1]} y {B.shape[0]}x{B.shape[1]}\n\n"
                                f"Las columnas de A ({A.shape[1]}) deben ser iguales a las filas de B ({B.shape[0]})")
             return
         
@@ -105,8 +105,8 @@ def ventana_multiplicacion():
         C = np.dot(A, B)
         
         resultado = "MULTIPLICACIÓN DE MATRICES\n" + "="*50 + "\n\n"
-        resultado += mostrar_matriz_texto(A, f"Matriz A ({A.shape[0]}×{A.shape[1]})")
-        resultado += mostrar_matriz_texto(B, f"Matriz B ({B.shape[0]}×{B.shape[1]})")
+        # resultado += mostrar_matriz_texto(A, f"Matriz A ({A.shape[0]}×{A.shape[1]})")
+        # resultado += mostrar_matriz_texto(B, f"Matriz B ({B.shape[0]}×{B.shape[1]})")
         resultado += mostrar_matriz_texto(C, f"RESULTADO (A × B) - Matriz {C.shape[0]}×{C.shape[1]}")
         resultado += "\n✓ Multiplicación completada exitosamente"
         
@@ -122,7 +122,7 @@ def ventana_multiplicacion():
     frame_botones = tk.Frame(ventana, bg="#f0f0f0")
     frame_botones.pack(pady=10)
     
-    btn_multiplicar = tk.Button(frame_botones, text="Multiplicar A × B", command=multiplicar,
+    btn_multiplicar = tk.Button(frame_botones, text="Multiplicar A x B", command=multiplicar,
                                bg="#2196F3", fg="white", font=('Arial', 11, 'bold'), padx=20, pady=5)
     btn_multiplicar.pack(side=tk.LEFT, padx=5)
     

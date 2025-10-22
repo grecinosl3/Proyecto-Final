@@ -34,7 +34,7 @@ def ventana_combinaciones():
         try:
             n = int(entry_n.get())
             r = int(entry_r.get())
-            res = calcular_combinacion_sin_repeticion(n + r - 1, r)
+            res = calcular_combinacion_sin_repeticion(n + r - 1, r) #Ver mas tarde 
             resultado.config(text=f"Resultado: {res}")
         except:
             messagebox.showerror("Error", "Ingresá valores enteros válidos.")

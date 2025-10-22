@@ -19,7 +19,6 @@ def ventana_mcd():
     resultado = tk.Label(win, text="", bg="#ecf0f1", font=('Arial', 12))
     resultado.pack(pady=10)
 
-
     def calcular():
         try:
             numero1 = int(entry_n.get())

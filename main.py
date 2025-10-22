@@ -13,7 +13,7 @@ class MenuPrincipal:
 
     def crear_interfaz(self):
     # Cargar la imagen y reducir tamaño
-        self.logo_img = tk.PhotoImage(file="proyecto/logo.png")
+        self.logo_img = tk.PhotoImage(file="c:/Users/Gerson/Desktop/Python/clases/proye/logo.png")
         self.logo_img = self.logo_img.subsample(3, 3)  
 
         frame_header = tk.Frame(self.root, bg="#16213e", pady=25)
@@ -29,11 +29,11 @@ class MenuPrincipal:
         frame_texto.pack(side=tk.LEFT, padx=10)
 
         tk.Label(frame_texto, text="PROYECTO ",
-                 font=('Arial', 16, 'bold'), bg="#16213e", fg="#0f3460").pack(anchor="w")
+                 font=('Arial', 16, 'bold'), bg="#16213e", fg="#eaeef1").pack(anchor="center")
         tk.Label(frame_texto, text="Ingeniería En Sistemas",
-                 font=('Arial', 28, 'bold'), bg="#16213e", fg="#e94560").pack(pady=5, anchor="w")
+                 font=('Arial', 28, 'bold'), bg="#16213e", fg="#e94560").pack(pady=5, anchor="center")
         tk.Label(frame_texto, text="Universidad Mariano Galvez -- Ciclo 2025 --",
-                 font=('Arial', 11), bg="#16213e", fg="#a8a8a8").pack(anchor="w")  
+                 font=('Arial', 11), bg="#16213e", fg="#a8a8a8").pack(anchor="center")  
           
           # Frame contenedor de proyectos
         frame_proyectos = tk.Frame(self.root, bg="#1a1a2e", pady=30)
@@ -59,7 +59,7 @@ class MenuPrincipal:
         btn_algebra.pack(pady=5)
         
         # Efecto hover
-        btn_algebra.bind("<Enter>", lambda e: btn_algebra.config(bg="#2980b9"))
+        btn_algebra.bind("<Enter>", lambda e: btn_algebra.config(bg="#2980b9")) #Agregar Hover a los demas
         btn_algebra.bind("<Leave>", lambda e: btn_algebra.config(bg="#3498db"))
         
         # Botón Algoritmos

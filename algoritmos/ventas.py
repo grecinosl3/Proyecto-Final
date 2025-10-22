@@ -1,5 +1,6 @@
 import openpyxl
 from pathlib import Path
+from tkinter import messagebox
 
 archivo_excel = Path(__file__).parent / 'archivos' / 'datos.xlsx'
 
@@ -24,16 +25,35 @@ def listar_ventas():
 def crear_venta(codigo_producto, codigo_cliente, cantidad_producto, total_ventas): 
     libro = openpyxl.load_workbook(archivo_excel)
     hoja = libro["ventas"]
+    hoja_inventario = libro["inventario"]
 
-    proxima_fila = hoja.max_row + 1
+    #Buscar producto en inventario 
+    for fila in hoja_inventario.iter_rows(min_row = 2):
+        codigo = str(fila[0].value).strip()
+        existencia = fila[2].value
 
-    hoja.cell(row=proxima_fila, column=1).value = codigo_producto
-    hoja.cell(row=proxima_fila, column=2).value = codigo_cliente
-    hoja.cell(row=proxima_fila, column=3).value = cantidad_producto
-    hoja.cell(row=proxima_fila, column=4).value = total_ventas
+        if codigo == str(codigo_producto).strip():
+            if existencia < cantidad_producto:
+                libro.close()
+                messagebox.showerror("Sin existencias", f"No hay suficientes existencias del producto {codigo_producto}")
+                return False
+            #Descontar del inventario 
+            fila[2].value = existencia - cantidad_producto
 
-    libro.save(archivo_excel)
+
+        #Registrar la venta
+        proxima_fila = hoja.max_row + 1
+        hoja.cell(row=proxima_fila, column=1).value = codigo_producto
+        hoja.cell(row=proxima_fila, column=2).value = codigo_cliente
+        hoja.cell(row=proxima_fila, column=3).value = cantidad_producto
+        hoja.cell(row=proxima_fila, column=4).value = total_ventas
+    
+        libro.save(archivo_excel)
+        libro.close()
+
     libro.close()
+    messagebox.showerror("Error", f"El producto con{codigo_producto} no existe en el inventario")
+    return False
 
 #Anular venta
 def anular_venta(codigo_producto):

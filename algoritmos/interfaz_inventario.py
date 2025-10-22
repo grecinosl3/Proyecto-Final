@@ -76,10 +76,10 @@ def ventana_productos():
         codigo = item['values'][0]
 
         # Pedir nuevos datos (dejar en blanco para no modificar)
-        nuevo_nombre = simpledialog.askstring("Editar Producto", "Nuevo nombre (dejar en blanco para no cambiar):")
-        nuevo_existencia = simpledialog.askstring("Editar Producto", "Nueva existencia (dejar en blanco para no cambiar):")
-        nuevo_proveedor = simpledialog.askstring("Editar Producto", "Nuevo proveedor (dejar en blanco para no cambiar):")
-        nuevo_precio = simpledialog.askstring("Editar Producto", "Nuevo precio (dejar en blanco para no cambiar):")
+        nuevo_nombre = simpledialog.askstring("Editar Producto", "Nuevo nombre:")
+        nuevo_existencia = simpledialog.askstring("Editar Producto", "Nueva existencia:")
+        nuevo_proveedor = simpledialog.askstring("Editar Producto", "Nuevo proveedor:")
+        nuevo_precio = simpledialog.askstring("Editar Producto", "Nuevo precio:")
 
         # Convertir datos
         nueva_existencia_val = None

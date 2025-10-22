@@ -14,7 +14,7 @@ def ventana_inversa():
     tk.Label(frame_config, text="Tamaño de la matriz:", font=('Arial', 11), bg="#f0f0f0").pack(side=tk.LEFT, padx=5)
     
     tamaño_var = tk.StringVar(value="2")
-    combo = tk.Spinbox(frame_config, from_=2, to=5, textvariable=tamaño_var, width=5, font=('Arial', 11))
+    combo = tk.Spinbox(frame_config, from_=2, to=3, textvariable=tamaño_var, width=5, font=('Arial', 11))
     combo.pack(side=tk.LEFT, padx=5)
     
     # Frame para la matriz
@@ -52,7 +52,7 @@ def ventana_inversa():
         det = np.linalg.det(A)
         
         resultado = f"MATRIZ ORIGINAL:\n"
-        resultado += mostrar_matriz_texto(A, "A")
+        # resultado += mostrar_matriz_texto(A, "A")
         resultado += f"\nDeterminante: {round(det, 4)}\n\n"
         
         if abs(det) < 1e-10:
@@ -63,11 +63,6 @@ def ventana_inversa():
             resultado += "La matriz SÍ tiene inversa\n\n"
             resultado += mostrar_matriz_texto(A_inv, "MATRIZ INVERSA (A⁻¹)")
             
-            # Verificación
-            verificacion = np.dot(A, A_inv)
-            resultado += "\nVERIFICACIÓN (A × A⁻¹ debe ser la matriz identidad):\n"
-            resultado += mostrar_matriz_texto(verificacion, "A × A⁻¹")
-        
         texto_resultado.delete(1.0, tk.END)
         texto_resultado.insert(1.0, resultado)
     

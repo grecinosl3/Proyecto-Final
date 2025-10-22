@@ -7,7 +7,7 @@ def main():
     """Ventana principal"""
     root = tk.Tk()
     root.title("Proyecto de Álgebra Lineal")
-    root.geometry("500x500")
+    root.geometry("500x550")
     root.configure(bg="#2c3e50")
     
     # Título
@@ -52,7 +52,7 @@ def main():
     
     # Footer
     tk.Label(root, text="Desarrollado con Python + Tkinter + NumPy", 
-            font=('Arial', 8), bg="#2c3e50", fg="#7f8c8d").pack(side=tk.BOTTOM, pady=10)
+            font=('Arial', 8), bg="#2c3e50", fg="#7f8c8d").pack(side=tk.BOTTOM, pady=30)
     
     root.mainloop()
 

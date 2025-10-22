@@ -7,7 +7,6 @@ archivo_excel = Path(__file__).parent / 'archivos' / 'datos.xlsx'
 def listar_clientes():
     libro = openpyxl.load_workbook(archivo_excel)
     hoja = libro["clientes"]
-
     clientes = []
 
     for numero_fila in range(2, hoja.max_row + 1):

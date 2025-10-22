@@ -5,7 +5,7 @@ from clientes import listar_clientes, crear_cliente, actualizar_cliente, elimina
 def interfaz_clientes():
     win = tk.Toplevel()
     win.title("Gestión de Clientes")
-    win.geometry("700x600")
+    win.geometry("600x650")
     win.configure(bg="#f0f0f0")
 
     # ------- Tabla para listar clientes -------
