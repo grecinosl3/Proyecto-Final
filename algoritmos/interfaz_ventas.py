@@ -1,5 +1,3 @@
-# ventas_gui.py
-
 import tkinter as tk
 from tkinter import messagebox, ttk
 from ventas import listar_ventas, crear_venta, anular_venta

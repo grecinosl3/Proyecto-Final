@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import simpledialog, messagebox
+from tkinter import messagebox
 import os
 from reportes import guardar_reporte_ventas_por_cliente, guardar_reporte_ventas_por_producto
 from enviar_con_adjunto import enviar_mensaje

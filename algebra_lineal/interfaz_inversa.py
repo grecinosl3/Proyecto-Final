@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import scrolledtext
-import numpy as np
-from utilidades import crear_ventana_base, leer_matriz_gui, mostrar_matriz_texto
+from utilidades import crear_ventana_base, leer_matriz_gui
+from logica import calcular_inversa
 
 def ventana_inversa():
     """Ventana para calcular la inversa de una matriz"""
@@ -29,7 +29,7 @@ def ventana_inversa():
             widget.destroy()
         
         n = int(tamaño_var.get())
-        tk.Label(frame_matriz, text=f"Ingrese los elementos de la matriz {n}×{n}:", 
+        tk.Label(frame_matriz, text=f"Ingrese los elementos de la matriz {n}x{n}:", 
                 font=('Arial', 11, 'bold'), bg="white").grid(row=0, column=0, columnspan=n, pady=10)
         
         entradas.clear()
@@ -47,25 +47,10 @@ def ventana_inversa():
         A = leer_matriz_gui(entradas)
         if A is None:
             return
-        
-        # Calcular determinante
-        det = np.linalg.det(A)
-        
-        resultado = f"MATRIZ ORIGINAL:\n"
-        # resultado += mostrar_matriz_texto(A, "A")
-        resultado += f"\nDeterminante: {round(det, 4)}\n\n"
-        
-        if abs(det) < 1e-10:
-            resultado += "Esta matriz NO tiene inversa (determinante = 0)\n"
-            resultado += "Una matriz solo tiene inversa si su determinante es diferente de cero."
-        else:
-            A_inv = np.linalg.inv(A)
-            resultado += "La matriz SÍ tiene inversa\n\n"
-            resultado += mostrar_matriz_texto(A_inv, "MATRIZ INVERSA (A⁻¹)")
-            
+        _, texto = calcular_inversa(A)
         texto_resultado.delete(1.0, tk.END)
-        texto_resultado.insert(1.0, resultado)
-    
+        texto_resultado.insert(tk.END, texto)
+        
     # Botón para crear/actualizar matriz
     btn_crear = tk.Button(frame_config, text="Crear Matriz", command=crear_matriz, 
                          bg="#4CAF50", fg="white", font=('Arial', 10, 'bold'), padx=10)

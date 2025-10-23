@@ -37,10 +37,7 @@ def enviar_mensaje(asunto, cuerpo, destinatario, titulo, nombre_archivo, ruta_de
 
     ruta_completa = os.path.join(ruta_de_adjunto, nombre_archivo)
     with open(ruta_completa, "rb") as archivo:
-        mensaje.add_attachment(archivo.read(),
-                               maintype=tipo_principal,
-                               subtype=sub_tipo,
-                               filename=nombre_archivo)
+        mensaje.add_attachment(archivo.read(), maintype=tipo_principal, subtype=sub_tipo, filename=nombre_archivo)
 
     # Conexión segura y envío
     context = ssl.create_default_context()

@@ -24,8 +24,8 @@ def ventana_mcd():
             numero1 = int(entry_n.get())
             numero2 = int(entry_r.get())
             res = calcular_mcd(numero1, numero2)
-            resultado.config(text=f"Resultado: {res}")
+            resultado.config(text=f"El CMD es de: {res}")
         except:
             messagebox.showerror("Error", "Ingresá valores enteros válidos.")
 
-    tk.Button(win, text="Calcular", command=calcular, bg="#9b59b6", fg="white").pack(pady=10)
+    tk.Button(win, text="Calcular", command=calcular, bg="#9b59b6", fg="white", width=30, height=2, font=('Arial', 10)).pack(pady=10)

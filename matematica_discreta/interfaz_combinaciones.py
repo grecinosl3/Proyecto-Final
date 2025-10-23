@@ -1,11 +1,11 @@
 import tkinter as tk
 from tkinter import messagebox
-from logica import calcular_combinacion_sin_repeticion
+from logica import calcular_combinacion_sin_repeticion, calcular_combinacion_con_repeticion
 
 def ventana_combinaciones():
     win = tk.Toplevel()
     win.title("Combinaciones")
-    win.geometry("300x250")
+    win.geometry("300x300")
     win.configure(bg="#ecf0f1")
 
     tk.Label(win, text="n:", font=('Arial', 12), bg="#ecf0f1").pack(pady=5)
@@ -24,19 +24,19 @@ def ventana_combinaciones():
             n = int(entry_n.get())
             r = int(entry_r.get())
             res = calcular_combinacion_sin_repeticion(n, r)
-            resultado.config(text=f"Resultado: {res}")
+            resultado.config(text=f"Combinacion sin Repeticion: {res}")
         except:
             messagebox.showerror("Error", "Ingresá valores enteros válidos.")
 
-    tk.Button(win, text="Calcular sin repeticion", command=calcular1, bg="#3498db", fg="white").pack(pady=10)
+    tk.Button(win, text="Calcular sin repeticion", command=calcular1, bg="#6634db", fg="white", width=30, height=2, font=('Arial', 10)).pack(pady=5)
 
     def calcular2():
         try:
             n = int(entry_n.get())
             r = int(entry_r.get())
-            res = calcular_combinacion_sin_repeticion(n + r - 1, r) #Ver mas tarde 
-            resultado.config(text=f"Resultado: {res}")
+            res = calcular_combinacion_con_repeticion(n, r) #Ver mas tarde 
+            resultado.config(text=f"Combinacion con Repeticion: {res}")
         except:
             messagebox.showerror("Error", "Ingresá valores enteros válidos.")
 
-    tk.Button(win, text="Calcular con repeticion", command=calcular2, bg="#3498db", fg="white").pack(pady=10)
+    tk.Button(win, text="Calcular con repeticion", command=calcular2, bg="#3498db", fg="white", width=30, height=2, font=('Arial', 10)).pack(pady=5)

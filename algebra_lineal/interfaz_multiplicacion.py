@@ -1,7 +1,7 @@
 import tkinter as tk
-from tkinter import messagebox, scrolledtext
-import numpy as np
-from utilidades import crear_ventana_base, leer_matriz_gui, mostrar_matriz_texto
+from tkinter import scrolledtext
+from utilidades import crear_ventana_base, leer_matriz_gui
+from logica import multiplicar_matrices
 
 def ventana_multiplicacion():
     """Ventana para multiplicar matrices"""
@@ -63,7 +63,7 @@ def ventana_multiplicacion():
         f2, c2 = int(filas2_var.get()), int(cols2_var.get())
         
         # Matriz 1
-        tk.Label(frame_matriz1, text=f"Matriz A ({f1}×{c1})", font=('Arial', 10, 'bold'), bg="white").grid(row=0, column=0, columnspan=c1, pady=5)
+        tk.Label(frame_matriz1, text=f"Matriz A ({f1}x{c1})", font=('Arial', 10, 'bold'), bg="white").grid(row=0, column=0, columnspan=c1, pady=5)
         entradas1.clear()
         for i in range(f1):
             fila = []
@@ -75,7 +75,7 @@ def ventana_multiplicacion():
             entradas1.append(fila)
         
         # Matriz 2
-        tk.Label(frame_matriz2, text=f"Matriz B ({f2}×{c2})", font=('Arial', 10, 'bold'), bg="white").grid(row=0, column=0, columnspan=c2, pady=5)
+        tk.Label(frame_matriz2, text=f"Matriz B ({f2}x{c2})", font=('Arial', 10, 'bold'), bg="white").grid(row=0, column=0, columnspan=c2, pady=5)
         entradas2.clear()
         for i in range(f2):
             fila = []
@@ -94,28 +94,15 @@ def ventana_multiplicacion():
         if A is None or B is None:
             return
         
-        # Validar dimensiones
-        if A.shape[1] != B.shape[0]:
-            messagebox.showerror("Error de Dimensiones", 
-                               f"No se pueden multiplicar matrices {A.shape[0]}x{A.shape[1]} y {B.shape[0]}x{B.shape[1]}\n\n"
-                               f"Las columnas de A ({A.shape[1]}) deben ser iguales a las filas de B ({B.shape[0]})")
-            return
-        
-        # Multiplicar
-        C = np.dot(A, B)
-        
-        resultado = "MULTIPLICACIÓN DE MATRICES\n" + "="*50 + "\n\n"
-        # resultado += mostrar_matriz_texto(A, f"Matriz A ({A.shape[0]}×{A.shape[1]})")
-        # resultado += mostrar_matriz_texto(B, f"Matriz B ({B.shape[0]}×{B.shape[1]})")
-        resultado += mostrar_matriz_texto(C, f"RESULTADO (A × B) - Matriz {C.shape[0]}×{C.shape[1]}")
-        resultado += "\n✓ Multiplicación completada exitosamente"
-        
-        texto_resultado.delete(1.0, tk.END)
-        texto_resultado.insert(1.0, resultado)
+        _, texto = multiplicar_matrices(A, B)
+        if texto: 
+            texto_resultado.delete(1.0, tk.END)
+            texto_resultado.insert(1.0, texto)
     
     # Botón crear
     btn_crear = tk.Button(frame_config, text="Crear Matrices", command=crear_matrices,
                          bg="#4CAF50", fg="white", font=('Arial', 10, 'bold'), padx=10)
+    
     btn_crear.grid(row=3, column=0, columnspan=5, pady=10)
     
     # Botones

@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from reportes import ventas_por_cliente, ventas_por_producto, guardar_reporte_ventas_por_cliente, guardar_reporte_ventas_por_producto
+from reportes import ventas_por_cliente, ventas_por_producto
 from envio_correo import guardar_y_enviar_reporte, guardar_y_enviar_reporte_producto
 import tkinter as tk
 from tkinter import simpledialog
@@ -27,16 +27,6 @@ def ventana_reportes():
                             bg="#27ae60", fg="white", font=('Arial', 13, 'bold'),
                             width=30, height=2, cursor="hand2")
     btn_producto.pack(pady=10)
-
-    # btn_guardar_producto = tk.Button( frame_botones, text="Guardar Reporte Ventas por Cliente",
-    #                                     command=guardar_reporte_ventas_por_cliente, bg="#f39c12", fg="white", font=('Arial', 12, 'bold'),
-    #                                     width=30, height=2, cursor="hand2")
-    # btn_guardar_producto.pack(pady=10)
-
-    # btn_guardar_producto = tk.Button( frame_botones, text="Guardar Reporte Ventas por producto",
-    #                                     command=guardar_reporte_ventas_por_producto, bg="#1234f3", fg="white", font=('Arial', 12, 'bold'),
-    #                                     width=30, height=2, cursor="hand2")
-    # btn_guardar_producto.pack(pady=10)
 
     # Botón para guardar y enviar correo
     def pedir_email_y_enviar():

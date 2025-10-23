@@ -26,7 +26,6 @@ def ventana_productos():
             tabla.insert("", tk.END, values=(
                 prod["codigo"], prod["nombre"], prod["existencia"], prod["proveedor"], prod["precio"]
             ))
-
     cargar_productos()
 
     # Función para agregar producto

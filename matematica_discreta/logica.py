@@ -15,10 +15,18 @@ def calcular_combinacion_con_repeticion(n, r):
     return math.comb(n + r - 1, r)
 
 # --- Permutaciones ---
-def calcular_permutacion(n, r):
+
+#Permutacion sin repeticion
+def calcular_permutacion_sin_repeticion(n, r):
     if r > n or n < 0 or r < 0:
         return "Valores inválidos"
     return math.perm(n, r)
+
+#Permutacion con repeticion
+def calcular_permutacion_con_repeticion(n, r):
+    if n <= 0 or r < 0:
+        return "Valores inválidos"
+    return n ** r
 
 # --- Conjuntos ---
 def operar_conjuntos(conjunto1, conjunto2, operacion='union'):

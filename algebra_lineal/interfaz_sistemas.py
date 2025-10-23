@@ -1,82 +1,8 @@
 import tkinter as tk
 from tkinter import messagebox, scrolledtext
 import numpy as np
-from utilidades import crear_ventana_base, leer_matriz_gui, mostrar_matriz_texto
-
-def gauss_jordan_texto(A, b):
-    """Resuelve por Gauss-Jordan y retorna texto del proceso"""
-    n = len(b)
-    Ab = np.column_stack([A.copy(), b.copy()])
-    
-    texto = "\n--- MÉTODO DE GAUSS-JORDAN ---\n\n"
-    texto += "MATRIZ AUMENTADA INICIAL [A|b]:\n"
-    texto += mostrar_matriz_texto(Ab)
-    
-    for i in range(n):
-        max_fila = i
-        for k in range(i + 1, n):
-            if abs(Ab[k][i]) > abs(Ab[max_fila][i]):
-                max_fila = k
-        
-        if max_fila != i:
-            Ab[[i, max_fila]] = Ab[[max_fila, i]]
-            texto += f"Intercambio filas {i+1} ↔ {max_fila+1}\n"
-        
-        if abs(Ab[i][i]) < 1e-10:
-            continue
-        
-        Ab[i] = Ab[i] / Ab[i][i]
-        texto += f"\nPaso {i+1}: Hacer pivote = 1 en fila {i+1}\n"
-        texto += mostrar_matriz_texto(Ab)
-        
-        for k in range(n):
-            if k != i and abs(Ab[k][i]) > 1e-10:
-                Ab[k] = Ab[k] - Ab[k][i] * Ab[i]
-    
-    return analizar_solucion_texto(Ab, n, texto)
-
-def regla_cramer_texto(A, b):
-    """Resuelve por Cramer y retorna texto"""
-    texto = "\n--- REGLA DE CRAMER ---\n\n"
-    det_A = np.linalg.det(A)
-    texto += f"Determinante de A: {round(det_A, 4)}\n\n"
-    
-    if abs(det_A) < 1e-10:
-        texto += " Determinante = 0, no se puede usar Cramer\n"
-        return None, "indeterminado", texto
-    
-    n = len(b)
-    soluciones = []
-    
-    for i in range(n):
-        A_i = A.copy()
-        A_i[:, i] = b
-        det_i = np.linalg.det(A_i)
-        sol = det_i / det_A
-        texto += f"x{i+1}: Det(A{i+1}) = {round(det_i, 4)} → x{i+1} = {round(sol, 4)}\n"
-        soluciones.append(sol)
-    
-    return soluciones, "única", texto
-
-def analizar_solucion_texto(Ab, n, texto_previo):
-    """Analiza solución y retorna resultado"""
-    A_red = Ab[:, :-1]
-    b_red = Ab[:, -1]
-    
-    rango_A = np.linalg.matrix_rank(A_red)
-    rango_Ab = np.linalg.matrix_rank(Ab)
-    
-    texto_previo += f"\n--- ANÁLISIS ---\n"
-    texto_previo += f"Rango(A) = {rango_A}\n"
-    texto_previo += f"Rango([A|b]) = {rango_Ab}\n"
-    texto_previo += f"Variables = {n}\n\n"
-    
-    if rango_A < rango_Ab:
-        return None, "sin solución", texto_previo
-    elif rango_A == rango_Ab == n:
-        return b_red[:n].tolist(), "única", texto_previo
-    else:
-        return None, "infinitas", texto_previo
+from utilidades import crear_ventana_base, leer_matriz_gui
+from logica import gauss_jordan, regla_cramer
 
 def ventana_sistemas():
     """Ventana para resolver sistemas de ecuaciones"""
@@ -110,7 +36,7 @@ def ventana_sistemas():
         
         n = int(tamaño_var.get())
         
-        tk.Label(frame_sistema, text=f"Sistema de Ecuaciones {n}×{n}", 
+        tk.Label(frame_sistema, text=f"Sistema de Ecuaciones {n}x{n}", 
                 font=('Arial', 11, 'bold'), bg="white").grid(row=0, column=0, columnspan=n+2, pady=10)
         
         tk.Label(frame_sistema, text="Coeficientes (A)", font=('Arial', 9, 'bold'), bg="white").grid(row=1, column=0, columnspan=n)
@@ -147,11 +73,8 @@ def ventana_sistemas():
             return
         
         resultado = "SISTEMA DE ECUACIONES\n" + "="*50 + "\n"
-        resultado += mostrar_matriz_texto(A, "Matriz A")
-        resultado += f"Vector b: {[round(x, 4) for x in b]}\n"
         
         # Mostrar ecuaciones
-        resultado += "\nEcuaciones:\n"
         for i in range(len(b)):
             ec = " + ".join([f"({round(A[i][j], 2)})x{j+1}" for j in range(len(b))])
             ec = ec.replace("+ -", "- ")
@@ -159,9 +82,9 @@ def ventana_sistemas():
         
         # Resolver
         if metodo_var.get() == "gauss":
-            sol, tipo, texto = gauss_jordan_texto(A, b)
+            sol, tipo, texto = gauss_jordan(A, b)
         else:
-            sol, tipo, texto = regla_cramer_texto(A, b)
+            sol, tipo, texto = regla_cramer(A, b)
         
         resultado += texto
         
