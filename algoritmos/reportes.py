@@ -13,6 +13,8 @@ def cargar_datos():
     # Cargar clientes en diccionario {codigo: {nombre, direccion}}
     clientes = {}
     for fila in clientes_hoja.iter_rows(min_row=2, max_col=3, values_only=True):
+        if not fila[0]:
+            continue
         codigo, nombre, direccion = fila
         clientes[codigo] = {
             "nombre": nombre,
@@ -22,12 +24,16 @@ def cargar_datos():
     # Cargar productos
     productos = {}
     for fila in inventario_hoja.iter_rows(min_row=2, max_col=2, values_only=True):
+        if not fila[0]:
+            continue
         codigo_producto, nombre_producto = fila
         productos[codigo_producto] = nombre_producto
 
     # Cargar ventas en lista de diccionarios
     ventas = []
     for fila in ventas_hoja.iter_rows(min_row=2, max_col=4, values_only=True):
+        if not fila[0]:
+            continue
         codigo_producto, codigo_cliente, cantidad_productos, total_venta = fila
         ventas.append({
             "codigo_producto": codigo_producto,
@@ -68,7 +74,7 @@ def ventas_por_producto():
         nombre = productos.get(codigo, "Desconocido")
         resultado.append((codigo, nombre, datos["cantidad"], datos["total"]))
 
-    return sorted(resultado)
+    return (resultado) #ERROR ANTES 
 
 #Guardamos el reporte en libro excel 
 def guardar_reporte_ventas_por_cliente(nombre_archivo="ventas_por_cliente.xlsx"):

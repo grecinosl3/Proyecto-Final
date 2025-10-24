@@ -24,7 +24,7 @@ def ventana_mcd():
             numero1 = int(entry_n.get())
             numero2 = int(entry_r.get())
             res = calcular_mcd(numero1, numero2)
-            resultado.config(text=f"El CMD es de: {res}")
+            resultado.config(text=f"El MCD es de: {res}")
         except:
             messagebox.showerror("Error", "Ingresá valores enteros válidos.")
 

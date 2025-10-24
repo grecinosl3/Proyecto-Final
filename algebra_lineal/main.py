@@ -18,7 +18,7 @@ def main():
             bg="#34495e", fg="white").pack()
     tk.Label(frame_titulo, text="ÁLGEBRA LINEAL", font=('Arial', 24, 'bold'), 
             bg="#34495e", fg="#3498db").pack()
-    tk.Label(frame_titulo, text="Operaciones con Matrices y Sistemas", 
+    tk.Label(frame_titulo, text="Operaciones con Matrices y Sistemas de ecuaciones", 
             font=('Arial', 10), bg="#34495e", fg="#ecf0f1").pack()
     
     # Frame de botones

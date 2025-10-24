@@ -62,5 +62,3 @@ def ventana_reportes():
 
         for fila in data:
             tree.insert("", tk.END, values=fila)
-
-    
