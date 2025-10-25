@@ -10,7 +10,7 @@ class MenuPrincipal:
         self.root.geometry("600x550")
         self.root.configure(bg="#1a1a2e")
         self.crear_interfaz()
-
+ 
     def crear_interfaz(self):
     # Cargar la imagen y reducir tamaño 
         self.logo_img = tk.PhotoImage(file=os.path.join(os.path.dirname(__file__), "logo.png"))
@@ -59,7 +59,7 @@ class MenuPrincipal:
         btn_algebra.pack(pady=5)
         
         # Efecto hover
-        btn_algebra.bind("<Enter>", lambda e: btn_algebra.config(bg="#2980b9")) #Agregar Hover a los demas
+        btn_algebra.bind("<Enter>", lambda e: btn_algebra.config(bg="#2980b9")) #Agregar Hover 
         btn_algebra.bind("<Leave>", lambda e: btn_algebra.config(bg="#3498db"))
         
         # Botón Algoritmos

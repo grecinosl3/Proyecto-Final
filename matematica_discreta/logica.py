@@ -2,7 +2,7 @@ import math
 
 # --- Combinaciones ---
 
-# Combinacion con repeticion
+# Combinacion Sin repeticion
 def calcular_combinacion_sin_repeticion(n, r):
     if r > n or n < 0 or r < 0:
         return "Valores inválidos"

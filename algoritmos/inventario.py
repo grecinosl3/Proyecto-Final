@@ -16,13 +16,16 @@ def listar_productos():
             "existencia": hoja.cell(row=numero_fila, column=3).value,
             "proveedor": hoja.cell(row=numero_fila, column=4).value,
             "precio": hoja.cell(row=numero_fila, column=5).value,
+            #Descuento creado en clase
+            "descuento": hoja.cell(row=numero_fila, column=6).value
+            
         }
         productos.append(producto)
     libro.close()
     return productos
 
 #Crear un nuevo producto 
-def crear_producto(codigo, nombre, existencia, proveedor, precio):
+def crear_producto(codigo, nombre, existencia, proveedor, precio, descuento):
     libro = openpyxl.load_workbook(archivo_excel)
     hoja = libro["inventario"]
 
@@ -33,12 +36,13 @@ def crear_producto(codigo, nombre, existencia, proveedor, precio):
     hoja.cell(row=proxima_fila, column=3).value = existencia
     hoja.cell(row=proxima_fila, column=4).value = proveedor
     hoja.cell(row=proxima_fila, column=5).value = precio
+    hoja.cell(row=proxima_fila, column=6).value = descuento
 
     libro.save(archivo_excel)
     libro.close()
 
 #Actualizar productos 
-def actualizar_producto(codigo_producto, nuevo_nombre=None, nueva_existencia=None, nuevo_proveedor=None, nuevo_precio=None):
+def actualizar_producto(codigo_producto, nuevo_nombre=None, nueva_existencia=None, nuevo_proveedor=None, nuevo_precio=None, nuevo_descuento= None):
     libro = openpyxl.load_workbook(archivo_excel)
     hoja = libro["inventario"]
 
@@ -53,6 +57,8 @@ def actualizar_producto(codigo_producto, nuevo_nombre=None, nueva_existencia=Non
                 fila[3].value = nuevo_proveedor
             if nuevo_precio is not None:
                 fila[4].value = nuevo_precio
+            if nuevo_precio is not None:
+                fila[5].value = nuevo_descuento
 
             libro.save(archivo_excel)
             libro.close()

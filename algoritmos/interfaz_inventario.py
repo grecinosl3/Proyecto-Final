@@ -11,7 +11,7 @@ def ventana_productos():
     frame_tabla = tk.Frame(win)
     frame_tabla.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
 
-    columnas = ("codigo", "nombre", "existencia", "proveedor", "precio")
+    columnas = ("codigo", "nombre", "existencia", "proveedor", "precio", "descuento")
     tabla = ttk.Treeview(frame_tabla, columns=columnas, show="headings")
     for col in columnas:
         tabla.heading(col, text=col.capitalize())
@@ -24,7 +24,7 @@ def ventana_productos():
         productos = listar_productos()
         for prod in productos:
             tabla.insert("", tk.END, values=(
-                prod["codigo"], prod["nombre"], prod["existencia"], prod["proveedor"], prod["precio"]
+                prod["codigo"], prod["nombre"], prod["existencia"], prod["proveedor"], prod["precio"], prod["descuento"]
             ))
     cargar_productos()
 
@@ -79,6 +79,7 @@ def ventana_productos():
         nuevo_existencia = simpledialog.askstring("Editar Producto", "Nueva existencia:")
         nuevo_proveedor = simpledialog.askstring("Editar Producto", "Nuevo proveedor:")
         nuevo_precio = simpledialog.askstring("Editar Producto", "Nuevo precio:")
+        nuevo_descuento = simpledialog.askstring("Editar descuento", "Nuevo descuento:")
 
         # Convertir datos
         nueva_existencia_val = None
@@ -146,6 +147,9 @@ def ventana_productos():
     btn_eliminar.grid(row=0, column=2, padx=5)
 
     btn_existencia = tk.Button(frame_botones, text="Modificar Existencia", command=editar_existencia_ui)
+    btn_existencia.grid(row=0, column=3, padx=5)
+
+    btn_existencia = tk.Button(frame_botones, text="Modificar descuento", command=editar_existencia_ui)
     btn_existencia.grid(row=0, column=3, padx=5)
 
     win.mainloop()

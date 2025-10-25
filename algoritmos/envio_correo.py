@@ -25,8 +25,8 @@ def guardar_y_enviar_reporte(destinatario_email):
             ruta_de_adjunto=ruta_de_adjunto
         )
         messagebox.showinfo("Éxito", "Reporte guardado y correo enviado correctamente.")
-    except Exception as e:
-        messagebox.showerror("Error", f"No se pudo enviar el correo:\n{e}")
+    except Exception:
+        messagebox.showerror("Error", f"No se pudo enviar el correo:\n")
 
 #ENVIAR POR PRODUCTO
 
@@ -51,5 +51,5 @@ def guardar_y_enviar_reporte_producto(destinatario_email):
             ruta_de_adjunto=ruta_de_adjunto
         )
         messagebox.showinfo("Éxito", "Reporte guardado y correo enviado correctamente.")
-    except Exception as e:
-        messagebox.showerror("Error", f"No se pudo enviar el correo:\n{e}")
+    except Exception:
+        messagebox.showerror("Error", f"No se pudo enviar el correo:\n")

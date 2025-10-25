@@ -1,10 +1,12 @@
 import numpy as np 
 from utilidades import mostrar_matriz_texto
 
+# Inversa 
 def calcular_inversa(A):
     det = np.linalg.det(A)
     texto = f"\nEl Determinante es: {round(det, 4)} \n\n"
 
+    #abs devuelve el valor absoluto 
     if abs(det) < 1e-10:
         texto += "Esta matriz no tiene inversa (El determinantes es 0)."
         return None, texto
@@ -16,12 +18,13 @@ def calcular_inversa(A):
 '''Operacion de multiplicacion'''
 
 def multiplicar_matrices(A, B):
+    #Debe tener el mismo numero de columnas de a por filas de b
     if A.shape[1] != B.shape[0]:
             texto = (f"No se pueden multiplicar matrices {A.shape[0]}x{A.shape[1]} y {B.shape[0]}x{B.shape[1]}\n"
                      f"Las columnas de A ({A.shape[1]}) deben ser iguales a las filas de B ({B.shape[0]})")
             return None, texto
         
-    # Multiplicar
+    # Multiplicar con dot=producto
     C = np.dot(A, B)
     texto = mostrar_matriz_texto(C, f"Resultado (A x B) Matriz {C.shape[0]}x{C.shape[1]}")
     texto += "\n La multipliacion de matrices ha sido exitosamente"
@@ -78,6 +81,7 @@ def regla_cramer(A, b):
 
 def analizar_solucion_texto(Ab, n, texto_previo):
     """Analiza solución y retorna resultado"""
+   #Toma todas las filas y todas las columnas excepto la última
     A_red = Ab[:, :-1]
     b_red = Ab[:, -1]
     
