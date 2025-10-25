@@ -2,13 +2,13 @@ import math
 
 # --- Combinaciones ---
 
-# - Combinacion con repeticion
+# Combinacion con repeticion
 def calcular_combinacion_sin_repeticion(n, r):
     if r > n or n < 0 or r < 0:
         return "Valores inválidos"
     return math.comb(n, r)
 
-# - Combinacion con repeticion
+# Combinacion con repeticion
 def calcular_combinacion_con_repeticion(n, r):
     if n <= 0 or r < 0:
         return "Valores inválidos"

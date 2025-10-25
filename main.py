@@ -12,8 +12,8 @@ class MenuPrincipal:
         self.crear_interfaz()
 
     def crear_interfaz(self):
-    # Cargar la imagen y reducir tamaño
-        self.logo_img = tk.PhotoImage(file="c:/Users/Gerson/Desktop/Python/clases/proye/logo.png")
+    # Cargar la imagen y reducir tamaño 
+        self.logo_img = tk.PhotoImage(file=os.path.join(os.path.dirname(__file__), "logo.png"))
         self.logo_img = self.logo_img.subsample(3, 3)  
 
         frame_header = tk.Frame(self.root, bg="#16213e", pady=25)

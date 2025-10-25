@@ -33,4 +33,4 @@ def ventana_conjuntos():
         except:
             messagebox.showerror("Error", "Entrada inválida. Separá los elementos con comas.")
 
-    tk.Button(win, text="Calcular", command=calcular, bg="#e67e22", fg="white").pack(pady=10)
+    tk.Button(win, text="Calcular", command=calcular, bg="#e67e22", fg="white", width=30, height=2, font=('Arial', 10)).pack(pady=10)

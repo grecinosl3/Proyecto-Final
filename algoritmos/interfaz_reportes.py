@@ -51,14 +51,18 @@ def ventana_reportes():
                                         width=35, height=2, cursor="hand2")
     btn_enviar_reporte_producto.pack(pady=10)
 
+#Muestra los reportes en cada parametro
     def mostrar_reporte(data, columnas, titulo):
         top = tk.Toplevel(win)
         top.title(titulo)
+        
+        #Crea el treeview con las columnas
         tree = ttk.Treeview(top, columns=columnas, show="headings")
         for col in columnas:
             tree.heading(col, text=col)
             tree.column(col, width=250)
         tree.pack(fill=tk.BOTH, expand=True)
 
+        #Inserta datos en la pantalla blanca(Treeview)
         for fila in data:
             tree.insert("", tk.END, values=fila)

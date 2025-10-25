@@ -4,7 +4,6 @@ import os
 from reportes import guardar_reporte_ventas_por_cliente, guardar_reporte_ventas_por_producto
 from enviar_con_adjunto import enviar_mensaje
 
-
 def guardar_y_enviar_reporte(destinatario_email):
     nombre_archivo = "ventas_por_cliente.xlsx"
     ruta_archivo = os.path.abspath(nombre_archivo)
