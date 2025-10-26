@@ -40,11 +40,13 @@ def ventana_productos():
             existencia = int(simpledialog.askstring("Nuevo Producto", "Existencia:"))
             proveedor = simpledialog.askstring("Nuevo Producto", "Proveedor:")
             precio = float(simpledialog.askstring("Nuevo Producto", "Precio:"))
+            descuento = float(simpledialog.askstring("Nuevo Producto", "Descuento:"))
+
         except (TypeError, ValueError):
             messagebox.showerror("Error", "Datos inválidos para existencia o precio")
             return
 
-        crear_producto(codigo, nombre, existencia, proveedor, precio)
+        crear_producto(codigo, nombre, existencia, proveedor, precio, descuento)
         messagebox.showinfo("Éxito", "Producto creado correctamente")
         cargar_productos()
 
